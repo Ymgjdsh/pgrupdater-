@@ -1,0 +1,5 @@
+{
+  "replace": {},
+  "add": {},
+  "drop_prefix": ["Payload/Phigros.app/Data/Raw/aa/iOS/"]
+}

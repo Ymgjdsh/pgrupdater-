@@ -1,0 +1,6 @@
+{
+  "replace": {
+    "Payload/Phigros.app/Phigros": "src/analysis_v20/Phigros",
+    "Payload/Phigros.app/Frameworks/UnityFramework.framework/UnityFramework": "src/analysis_v20/UnityFramework"
+  }
+}

@@ -1,0 +1,737 @@
+{
+ "___darwin_check_fd_set_overflow": {
+  "ord": 2,
+  "lib": "/usr/lib/libSystem.B.dylib",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "-",
+   "-",
+   "direct",
+   "-",
+   "direct",
+   "-"
+  ],
+  "first": "13.7"
+ },
+ "__availability_version_check": {
+  "ord": 2,
+  "lib": "/usr/lib/libSystem.B.dylib",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "-",
+   "direct",
+   "direct",
+   "-",
+   "direct",
+   "-"
+  ],
+  "first": "13.0"
+ },
+ "_OBJC_CLASS_$_NSConstantIntegerNumber": {
+  "ord": 14,
+  "lib": "/System/Library/Frameworks/Foundation.framework/Foundation",
+  "liblink": "strong",
+  "symweak": "S",
+  "by_version": [
+   "-",
+   "direct",
+   "direct",
+   "direct",
+   "direct",
+   "notbd"
+  ],
+  "first": "13.0"
+ },
+ "_CAFrameRateRangeMake": {
+  "ord": 16,
+  "lib": "/System/Library/Frameworks/QuartzCore.framework/QuartzCore",
+  "liblink": "strong",
+  "symweak": "S",
+  "by_version": [
+   "-",
+   "-",
+   "-",
+   "-",
+   "direct",
+   "direct"
+  ],
+  "first": "15.6"
+ },
+ "_OBJC_CLASS_$_UIWindowScene": {
+  "ord": 18,
+  "lib": "/System/Library/Frameworks/UIKit.framework/UIKit",
+  "liblink": "strong",
+  "symweak": "S",
+  "by_version": [
+   "-",
+   "direct",
+   "direct",
+   "reexp",
+   "direct",
+   "reexp"
+  ],
+  "first": "13.0"
+ },
+ "_CTRadioAccessTechnologyNR": {
+  "ord": 23,
+  "lib": "/System/Library/Frameworks/CoreTelephony.framework/CoreTelephony",
+  "liblink": "strong",
+  "symweak": "W",
+  "by_version": [
+   "-",
+   "-",
+   "-",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_CTRadioAccessTechnologyNRNSA": {
+  "ord": 23,
+  "lib": "/System/Library/Frameworks/CoreTelephony.framework/CoreTelephony",
+  "liblink": "strong",
+  "symweak": "W",
+  "by_version": [
+   "-",
+   "-",
+   "-",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_objc_opt_class": {
+  "ord": 27,
+  "lib": "/usr/lib/libobjc.A.dylib",
+  "liblink": "strong",
+  "symweak": "S",
+  "by_version": [
+   "-",
+   "direct",
+   "direct",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "13.0"
+ },
+ "_objc_opt_isKindOfClass": {
+  "ord": 27,
+  "lib": "/usr/lib/libobjc.A.dylib",
+  "liblink": "strong",
+  "symweak": "S",
+  "by_version": [
+   "-",
+   "direct",
+   "direct",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "13.0"
+ },
+ "_objc_opt_new": {
+  "ord": 27,
+  "lib": "/usr/lib/libobjc.A.dylib",
+  "liblink": "strong",
+  "symweak": "S",
+  "by_version": [
+   "-",
+   "direct",
+   "direct",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "13.0"
+ },
+ "_objc_opt_respondsToSelector": {
+  "ord": 27,
+  "lib": "/usr/lib/libobjc.A.dylib",
+  "liblink": "strong",
+  "symweak": "S",
+  "by_version": [
+   "-",
+   "direct",
+   "direct",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "13.0"
+ },
+ "_AVAudioSessionCategoryAmbient": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionCategoryAudioProcessing": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionCategoryMultiRoute": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionCategoryPlayAndRecord": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionCategoryPlayback": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionCategoryRecord": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionCategorySoloAmbient": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionInterruptionNotification": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionInterruptionTypeKey": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionMediaServicesWereResetNotification": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionPortAirPlay": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionPortBluetoothA2DP": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionPortBluetoothHFP": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionPortBluetoothLE": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionPortBuiltInMic": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionPortBuiltInReceiver": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionPortBuiltInSpeaker": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionPortCarAudio": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionPortHDMI": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionPortHeadphones": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionPortHeadsetMic": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionPortLineIn": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionPortLineOut": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionPortUSBAudio": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionRouteChangeNotification": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionRouteChangePreviousRouteKey": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVAudioSessionRouteChangeReasonKey": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVFormatIDKey": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVLinearPCMBitDepthKey": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVLinearPCMIsBigEndianKey": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVLinearPCMIsFloatKey": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVLinearPCMIsNonInterleaved": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVNumberOfChannelsKey": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_AVSampleRateKey": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "_OBJC_CLASS_$_AVAudioSession": {
+  "ord": 28,
+  "lib": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+  "liblink": "weak",
+  "symweak": "W",
+  "by_version": [
+   "notbd",
+   "notbd",
+   "notbd",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "14.5"
+ },
+ "___NSDictionary0__struct": {
+  "ord": 29,
+  "lib": "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation",
+  "liblink": "strong",
+  "symweak": "S",
+  "by_version": [
+   "-",
+   "direct",
+   "direct",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "13.0"
+ },
+ "___kCFBooleanTrue": {
+  "ord": 29,
+  "lib": "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation",
+  "liblink": "strong",
+  "symweak": "S",
+  "by_version": [
+   "-",
+   "direct",
+   "direct",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "13.0"
+ },
+ "_OBJC_CLASS_$_NSConstantArray": {
+  "ord": 29,
+  "lib": "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation",
+  "liblink": "strong",
+  "symweak": "S",
+  "by_version": [
+   "-",
+   "direct",
+   "direct",
+   "direct",
+   "direct",
+   "direct"
+  ],
+  "first": "13.0"
+ }
+}

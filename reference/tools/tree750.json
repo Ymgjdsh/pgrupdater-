@@ -1,0 +1,961 @@
+{
+  "sha": "289296d8da04b033c0f254e66faf81d486953d16",
+  "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/trees/289296d8da04b033c0f254e66faf81d486953d16",
+  "tree": [
+    {
+      "path": "APPLE_LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fe81a60cae982c042a69f97623b427666c455093",
+      "size": 19829,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/fe81a60cae982c042a69f97623b427666c455093"
+    },
+    {
+      "path": "ReleaseNotes.rtf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eec82a9776ba70b5004b4471183ffe471baae50e",
+      "size": 19066,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/eec82a9776ba70b5004b4471183ffe471baae50e"
+    },
+    {
+      "path": "interposable.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f5d09f3c9c60752dfdc5231773e3957acf862a8b",
+      "size": 14,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/f5d09f3c9c60752dfdc5231773e3957acf862a8b"
+    },
+    {
+      "path": "libobjc.order",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc60cf4ab5093ac90880ed0464c3826d2b9239a8",
+      "size": 10549,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/fc60cf4ab5093ac90880ed0464c3826d2b9239a8"
+    },
+    {
+      "path": "markgc.cpp",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4543ad67cfd6bbf0da08c3226f7f145e526b458a",
+      "size": 21218,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/4543ad67cfd6bbf0da08c3226f7f145e526b458a"
+    },
+    {
+      "path": "objc.sln",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "ddfd6e06268ce9d1e7332f5addec1d91d850a70a",
+      "size": 1849,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/ddfd6e06268ce9d1e7332f5addec1d91d850a70a"
+    },
+    {
+      "path": "objc.vcproj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2c8466253f56c1c4424863348670ff87b9ed3c31",
+      "size": 24260,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/2c8466253f56c1c4424863348670ff87b9ed3c31"
+    },
+    {
+      "path": "objc.xcodeproj",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f70dcbe2f9fbca40ad713580d8e6c0b55697c24f",
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/trees/f70dcbe2f9fbca40ad713580d8e6c0b55697c24f"
+    },
+    {
+      "path": "objc.xcodeproj/project.pbxproj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "715d17987021360ccf97c7d27a52d792338a573c",
+      "size": 66091,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/715d17987021360ccf97c7d27a52d792338a573c"
+    },
+    {
+      "path": "objcrt",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0a3ce33c2d2bb1816be9108f4eb6c4dcd3527669",
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/trees/0a3ce33c2d2bb1816be9108f4eb6c4dcd3527669"
+    },
+    {
+      "path": "objcrt/objcrt.vcproj",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "22b59192982854b9af2502c90efe5e5706d8305b",
+      "size": 2738,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/22b59192982854b9af2502c90efe5e5706d8305b"
+    },
+    {
+      "path": "prebuild.bat",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "70c55b009ac11982eeddd3bfe392d6b0e8868866",
+      "size": 827,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/70c55b009ac11982eeddd3bfe392d6b0e8868866"
+    },
+    {
+      "path": "runtime",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a66ead7941b475c2aff81a0482a1f940480bd16a",
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/trees/a66ead7941b475c2aff81a0482a1f940480bd16a"
+    },
+    {
+      "path": "runtime/Messengers.subproj",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f813df579bd416542df60be590d6d02778b1597c",
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/trees/f813df579bd416542df60be590d6d02778b1597c"
+    },
+    {
+      "path": "runtime/Messengers.subproj/objc-msg-arm.s",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "01419dc12f4a00771ed02cdf7d44bf9769bc119b",
+      "size": 20010,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/01419dc12f4a00771ed02cdf7d44bf9769bc119b"
+    },
+    {
+      "path": "runtime/Messengers.subproj/objc-msg-arm64.s",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "8cef3e1ffe52f2245895614d162f169e5114093b",
+      "size": 13586,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/8cef3e1ffe52f2245895614d162f169e5114093b"
+    },
+    {
+      "path": "runtime/Messengers.subproj/objc-msg-i386.s",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f71a51ee0c940b2d4cd9b0a45045faa597b68f9",
+      "size": 30888,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/6f71a51ee0c940b2d4cd9b0a45045faa597b68f9"
+    },
+    {
+      "path": "runtime/Messengers.subproj/objc-msg-simulator-i386.s",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "63631fa2bd561428e537e29ae023d6d9a3ce9f2a",
+      "size": 22174,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/63631fa2bd561428e537e29ae023d6d9a3ce9f2a"
+    },
+    {
+      "path": "runtime/Messengers.subproj/objc-msg-simulator-x86_64.s",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c1ef8378c92da08dbf3a638b490c4e4582f4ea73",
+      "size": 27208,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/c1ef8378c92da08dbf3a638b490c4e4582f4ea73"
+    },
+    {
+      "path": "runtime/Messengers.subproj/objc-msg-win32.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8821b0a1c79fb87f8c8daa000daa3454842e18cc",
+      "size": 10495,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/8821b0a1c79fb87f8c8daa000daa3454842e18cc"
+    },
+    {
+      "path": "runtime/Messengers.subproj/objc-msg-x86_64.s",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9427306cf4d9b88e900000da42f9d82ebab28840",
+      "size": 28189,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/9427306cf4d9b88e900000da42f9d82ebab28840"
+    },
+    {
+      "path": "runtime/Module",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "751fac1e3f1afc05d1a37b98968c40873383b93a",
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/trees/751fac1e3f1afc05d1a37b98968c40873383b93a"
+    },
+    {
+      "path": "runtime/Module/ObjectiveC.apinotes",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5491c899a48af72b7278e4a0a753c53e57aaf124",
+      "size": 11147,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/5491c899a48af72b7278e4a0a753c53e57aaf124"
+    },
+    {
+      "path": "runtime/Module/module.modulemap",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "74f7d643c9c97b76be04ecccd265f8158987120b",
+      "size": 673,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/74f7d643c9c97b76be04ecccd265f8158987120b"
+    },
+    {
+      "path": "runtime/NSObjCRuntime.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1310f0375c8d629982b7b654c66a9b419cccfdee",
+      "size": 737,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/1310f0375c8d629982b7b654c66a9b419cccfdee"
+    },
+    {
+      "path": "runtime/NSObject.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2172abaf4e8f4a98bdeda803a7b087c6e0d78de9",
+      "size": 3334,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/2172abaf4e8f4a98bdeda803a7b087c6e0d78de9"
+    },
+    {
+      "path": "runtime/NSObject.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "33d726790d0b1fd6a0edb512828cb3eeb757421c",
+      "size": 60087,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/33d726790d0b1fd6a0edb512828cb3eeb757421c"
+    },
+    {
+      "path": "runtime/Object.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "86ce416d7f2469bc50d0fe8edd4791617a98b562",
+      "size": 3875,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/86ce416d7f2469bc50d0fe8edd4791617a98b562"
+    },
+    {
+      "path": "runtime/Object.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e03b274fda9356a95dd38b26c456e261e3e9c115",
+      "size": 10390,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/e03b274fda9356a95dd38b26c456e261e3e9c115"
+    },
+    {
+      "path": "runtime/OldClasses.subproj",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "715a0b053aa2408bbc49f8388e9e407d85c2ffc2",
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/trees/715a0b053aa2408bbc49f8388e9e407d85c2ffc2"
+    },
+    {
+      "path": "runtime/OldClasses.subproj/List.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d1f7ff6250db91288d7b624677709592cdde0907",
+      "size": 3624,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/d1f7ff6250db91288d7b624677709592cdde0907"
+    },
+    {
+      "path": "runtime/OldClasses.subproj/List.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a46849c27b005b2b24ce33db7fbedee161a39506",
+      "size": 6054,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/a46849c27b005b2b24ce33db7fbedee161a39506"
+    },
+    {
+      "path": "runtime/Protocol.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f5169bedbb023c4a01641ac323ca2284e0694b99",
+      "size": 3012,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/f5169bedbb023c4a01641ac323ca2284e0694b99"
+    },
+    {
+      "path": "runtime/Protocol.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a2b3dad82c3d2dec17d087316d830860ac1674b",
+      "size": 3523,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/2a2b3dad82c3d2dec17d087316d830860ac1674b"
+    },
+    {
+      "path": "runtime/arm64-asm.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0bbed2fce77594fa102606af121dd7d1a96389c4",
+      "size": 3496,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/0bbed2fce77594fa102606af121dd7d1a96389c4"
+    },
+    {
+      "path": "runtime/hashtable.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7f62780e6f256c0a3edbb2c2810f110bc0952940",
+      "size": 30,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/7f62780e6f256c0a3edbb2c2810f110bc0952940"
+    },
+    {
+      "path": "runtime/hashtable2.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a7dd3c821d4aa75d5552042055e0570a65f6e707",
+      "size": 12145,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/a7dd3c821d4aa75d5552042055e0570a65f6e707"
+    },
+    {
+      "path": "runtime/hashtable2.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e869f1de84fcff744ce48ed052ff3ae67b2b1fe5",
+      "size": 21024,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/e869f1de84fcff744ce48ed052ff3ae67b2b1fe5"
+    },
+    {
+      "path": "runtime/isa.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b4741cb352f7e34f857bf685378e3185cc02cdc8",
+      "size": 5294,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/b4741cb352f7e34f857bf685378e3185cc02cdc8"
+    },
+    {
+      "path": "runtime/llvm-AlignOf.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cad242298292d2dba2b87f09b134806955d27775",
+      "size": 6532,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/cad242298292d2dba2b87f09b134806955d27775"
+    },
+    {
+      "path": "runtime/llvm-DenseMap.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6fe1382f0a72ae435af09324c6f9f387c5834107",
+      "size": 34505,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/6fe1382f0a72ae435af09324c6f9f387c5834107"
+    },
+    {
+      "path": "runtime/llvm-DenseMapInfo.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4b7869ff3cd199e3b50826dba5382591a21f67d0",
+      "size": 6466,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/4b7869ff3cd199e3b50826dba5382591a21f67d0"
+    },
+    {
+      "path": "runtime/llvm-MathExtras.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7baad419bf9caab3ae0f5673ae2bf278c584c462",
+      "size": 15440,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/7baad419bf9caab3ae0f5673ae2bf278c584c462"
+    },
+    {
+      "path": "runtime/llvm-type_traits.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bbe38d43afc102a453d1d47c246b5442910ea5af",
+      "size": 8841,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/bbe38d43afc102a453d1d47c246b5442910ea5af"
+    },
+    {
+      "path": "runtime/maptable.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "248c18f11abed63149f247f4b3aa6020d56e05d0",
+      "size": 6759,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/248c18f11abed63149f247f4b3aa6020d56e05d0"
+    },
+    {
+      "path": "runtime/maptable.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a59b00b5ff1323a3d78e05f80905627a9aaa4c47",
+      "size": 17996,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/a59b00b5ff1323a3d78e05f80905627a9aaa4c47"
+    },
+    {
+      "path": "runtime/message.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a53b43041cceaa538ce0105e3923a27af3a13901",
+      "size": 12205,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/a53b43041cceaa538ce0105e3923a27af3a13901"
+    },
+    {
+      "path": "runtime/objc-abi.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ddab3b86f15c80f034ce5aaa89e3fe35e406c1f7",
+      "size": 15435,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/ddab3b86f15c80f034ce5aaa89e3fe35e406c1f7"
+    },
+    {
+      "path": "runtime/objc-accessors.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "612abea3a6911e21ec9a94e04d3c7f55e80c297c",
+      "size": 4950,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/612abea3a6911e21ec9a94e04d3c7f55e80c297c"
+    },
+    {
+      "path": "runtime/objc-api.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7a7e3979d1afa60c59cee126f530d8f99deb4f55",
+      "size": 8718,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/7a7e3979d1afa60c59cee126f530d8f99deb4f55"
+    },
+    {
+      "path": "runtime/objc-auto.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "81c107eb4ed7fb5e009201538058d151d55f0f19",
+      "size": 14076,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/81c107eb4ed7fb5e009201538058d151d55f0f19"
+    },
+    {
+      "path": "runtime/objc-auto.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8e704b5800c8f92c0a5a832257a8aae264d8ec6",
+      "size": 4930,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/e8e704b5800c8f92c0a5a832257a8aae264d8ec6"
+    },
+    {
+      "path": "runtime/objc-block-trampolines.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f5ec10a5a26a85de410531a08ac88f8389dd0c1c",
+      "size": 2062,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/f5ec10a5a26a85de410531a08ac88f8389dd0c1c"
+    },
+    {
+      "path": "runtime/objc-block-trampolines.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c11423bb45fa1a64d011751c4945191f13bf23ff",
+      "size": 19089,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/c11423bb45fa1a64d011751c4945191f13bf23ff"
+    },
+    {
+      "path": "runtime/objc-blocktramps-arm.s",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bbbe1cfed25021b94014ed4fe83f960c7d86d2d6",
+      "size": 5678,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/bbbe1cfed25021b94014ed4fe83f960c7d86d2d6"
+    },
+    {
+      "path": "runtime/objc-blocktramps-arm64.s",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a79a031127fb4277c0354ee4878f2035d9216485",
+      "size": 2523,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/a79a031127fb4277c0354ee4878f2035d9216485"
+    },
+    {
+      "path": "runtime/objc-blocktramps-i386.s",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "f2a1aceb7b32662d1f723b9c60d934970b2e09bb",
+      "size": 25622,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/f2a1aceb7b32662d1f723b9c60d934970b2e09bb"
+    },
+    {
+      "path": "runtime/objc-blocktramps-x86_64.s",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "4423859cf00214c0af4de257a30b3ea8074f066f",
+      "size": 25514,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/4423859cf00214c0af4de257a30b3ea8074f066f"
+    },
+    {
+      "path": "runtime/objc-cache-old.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7f0245e7918aea7dbbcde84118aab50f3ec4748c",
+      "size": 1511,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/7f0245e7918aea7dbbcde84118aab50f3ec4748c"
+    },
+    {
+      "path": "runtime/objc-cache-old.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b785a6a1547c31cc1abc96b37844b9e0e8bc81ed",
+      "size": 65034,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/b785a6a1547c31cc1abc96b37844b9e0e8bc81ed"
+    },
+    {
+      "path": "runtime/objc-cache.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de348a08a499f07d7759ff3c912f9d17fd5a02b3",
+      "size": 349,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/de348a08a499f07d7759ff3c912f9d17fd5a02b3"
+    },
+    {
+      "path": "runtime/objc-cache.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "73b172c321c4bb13833b0df2de879b8f10a47ce1",
+      "size": 33912,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/73b172c321c4bb13833b0df2de879b8f10a47ce1"
+    },
+    {
+      "path": "runtime/objc-class-old.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dd13e22f3a42696723d1fba4d2fe720368ed8f07",
+      "size": 76810,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/dd13e22f3a42696723d1fba4d2fe720368ed8f07"
+    },
+    {
+      "path": "runtime/objc-class.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4599f08f5ab19a33617f6f1487e8bfbcef4abbae",
+      "size": 52,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/4599f08f5ab19a33617f6f1487e8bfbcef4abbae"
+    },
+    {
+      "path": "runtime/objc-class.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb9ceae28c4723d8792e53c7551eed631f529e65",
+      "size": 41548,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/bb9ceae28c4723d8792e53c7551eed631f529e65"
+    },
+    {
+      "path": "runtime/objc-config.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "72799c7bc3f8a19ec4fd2df94bba094d578a0473",
+      "size": 5616,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/72799c7bc3f8a19ec4fd2df94bba094d578a0473"
+    },
+    {
+      "path": "runtime/objc-env.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "07090d6a5b5fc1b9d040487a54b89f95c8f20104",
+      "size": 4580,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/07090d6a5b5fc1b9d040487a54b89f95c8f20104"
+    },
+    {
+      "path": "runtime/objc-errors.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "159cd86cbf982ef606f84cbed4370e5b6733cec5",
+      "size": 7110,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/159cd86cbf982ef606f84cbed4370e5b6733cec5"
+    },
+    {
+      "path": "runtime/objc-exception.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d6cbb7ef356aaba772fc257f34deb27c1306b8b3",
+      "size": 5204,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/d6cbb7ef356aaba772fc257f34deb27c1306b8b3"
+    },
+    {
+      "path": "runtime/objc-exception.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c93b8e77a7288b85ca17e3381370f83c74130c08",
+      "size": 44974,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/c93b8e77a7288b85ca17e3381370f83c74130c08"
+    },
+    {
+      "path": "runtime/objc-file-old.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9799c5ee91d5ea7b9b52152f81fbb4398677fd4a",
+      "size": 1695,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/9799c5ee91d5ea7b9b52152f81fbb4398677fd4a"
+    },
+    {
+      "path": "runtime/objc-file-old.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "67889ecf9def0be084df9382f7060d759e9d5589",
+      "size": 5150,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/67889ecf9def0be084df9382f7060d759e9d5589"
+    },
+    {
+      "path": "runtime/objc-file.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "47b710827c86f49ee5b49101e8dbe3093d729d9e",
+      "size": 3632,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/47b710827c86f49ee5b49101e8dbe3093d729d9e"
+    },
+    {
+      "path": "runtime/objc-file.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "917b2bc16b71b1b895b84a14a96bde5b40acdd76",
+      "size": 4066,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/917b2bc16b71b1b895b84a14a96bde5b40acdd76"
+    },
+    {
+      "path": "runtime/objc-gdb.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "88dc2a8b1c1ad3e7224501752e99679f3b423c7c",
+      "size": 7497,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/88dc2a8b1c1ad3e7224501752e99679f3b423c7c"
+    },
+    {
+      "path": "runtime/objc-initialize.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9ec99b595b1172067588332dbfbaed4db92bbc74",
+      "size": 1314,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/9ec99b595b1172067588332dbfbaed4db92bbc74"
+    },
+    {
+      "path": "runtime/objc-initialize.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "80491bb6e9754458d70cb4df6a65f544b1e3b775",
+      "size": 22403,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/80491bb6e9754458d70cb4df6a65f544b1e3b775"
+    },
+    {
+      "path": "runtime/objc-internal.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "44e89ff2a9813d091c7b8590c10526fe904e6fcb",
+      "size": 32568,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/44e89ff2a9813d091c7b8590c10526fe904e6fcb"
+    },
+    {
+      "path": "runtime/objc-layout.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d125f08e09b5051df146df856718af5de8f38754",
+      "size": 28920,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/d125f08e09b5051df146df856718af5de8f38754"
+    },
+    {
+      "path": "runtime/objc-load.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0e334a24857d71afd6145a6e686abccc6c65fd68",
+      "size": 1958,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/0e334a24857d71afd6145a6e686abccc6c65fd68"
+    },
+    {
+      "path": "runtime/objc-load.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3e00a038a71d9549239a56157a77df74604fd56d",
+      "size": 5337,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/3e00a038a71d9549239a56157a77df74604fd56d"
+    },
+    {
+      "path": "runtime/objc-loadmethod.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f1f2b9c1b99daf41f01b76f788c2650abd482190",
+      "size": 1554,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/f1f2b9c1b99daf41f01b76f788c2650abd482190"
+    },
+    {
+      "path": "runtime/objc-loadmethod.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "55ef00ba22943925665d6c822e8031b8c1030354",
+      "size": 12480,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/55ef00ba22943925665d6c822e8031b8c1030354"
+    },
+    {
+      "path": "runtime/objc-lockdebug.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a3048b1c99b235028bdc8b7fd162cac356fa4c9c",
+      "size": 4204,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/a3048b1c99b235028bdc8b7fd162cac356fa4c9c"
+    },
+    {
+      "path": "runtime/objc-lockdebug.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f182a27b260ff428531e6005667d1c7b242649f7",
+      "size": 12864,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/f182a27b260ff428531e6005667d1c7b242649f7"
+    },
+    {
+      "path": "runtime/objc-locks-new.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd3ace3dfa6bdda8349f4901a01b15ac6fcb7146",
+      "size": 1442,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/cd3ace3dfa6bdda8349f4901a01b15ac6fcb7146"
+    },
+    {
+      "path": "runtime/objc-locks-old.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1926136b7fe3adf545bc5bbae9d57a46471622b8",
+      "size": 1499,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/1926136b7fe3adf545bc5bbae9d57a46471622b8"
+    },
+    {
+      "path": "runtime/objc-locks.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8cb79071170c722eb89778ccdb8ac94144356aa2",
+      "size": 2428,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/8cb79071170c722eb89778ccdb8ac94144356aa2"
+    },
+    {
+      "path": "runtime/objc-object.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "177ea10e02b96a8d829b8fda29d18be83a6c77f0",
+      "size": 31343,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/177ea10e02b96a8d829b8fda29d18be83a6c77f0"
+    },
+    {
+      "path": "runtime/objc-opt.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "498c3495b11aac29e0121b9210d28bb510bb7bc4",
+      "size": 10935,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/498c3495b11aac29e0121b9210d28bb510bb7bc4"
+    },
+    {
+      "path": "runtime/objc-os.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24addca03a5ac314b7cdc17b7b2c382e39a7ee5f",
+      "size": 30040,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/24addca03a5ac314b7cdc17b7b2c382e39a7ee5f"
+    },
+    {
+      "path": "runtime/objc-os.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9731e15ac66a8695bd9b1692e8adcc1fafdee9f3",
+      "size": 34129,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/9731e15ac66a8695bd9b1692e8adcc1fafdee9f3"
+    },
+    {
+      "path": "runtime/objc-private.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "66994f64bd6e535305f154688505aded3b2f133e",
+      "size": 29057,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/66994f64bd6e535305f154688505aded3b2f133e"
+    },
+    {
+      "path": "runtime/objc-probes.d",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4a1e2248352cc09460a5ad193c2c456cf7d62fae",
+      "size": 105,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/4a1e2248352cc09460a5ad193c2c456cf7d62fae"
+    },
+    {
+      "path": "runtime/objc-ptrauth.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f766d26a0d668a3f2d67c8b34f04ec869ec7a36e",
+      "size": 3209,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/f766d26a0d668a3f2d67c8b34f04ec869ec7a36e"
+    },
+    {
+      "path": "runtime/objc-references.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1e49f7cedb1fe924fc8488cb18587b6f8f46817b",
+      "size": 1356,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/1e49f7cedb1fe924fc8488cb18587b6f8f46817b"
+    },
+    {
+      "path": "runtime/objc-references.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c1119f047f37faf1eb483bd69006e0d92439eb46",
+      "size": 12097,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/c1119f047f37faf1eb483bd69006e0d92439eb46"
+    },
+    {
+      "path": "runtime/objc-runtime-new.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "04a4c6598a0c7dea63e4106ecca1773058c7f92a",
+      "size": 41056,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/04a4c6598a0c7dea63e4106ecca1773058c7f92a"
+    },
+    {
+      "path": "runtime/objc-runtime-new.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b52aaa04e6ce6f44fb846d0ad274277795661c01",
+      "size": 222721,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/b52aaa04e6ce6f44fb846d0ad274277795661c01"
+    },
+    {
+      "path": "runtime/objc-runtime-old.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "664cf4ba44c76947f0b7ff9497427d71fca28372",
+      "size": 12077,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/664cf4ba44c76947f0b7ff9497427d71fca28372"
+    },
+    {
+      "path": "runtime/objc-runtime-old.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e881d717bbed016e700207c437d373628c11e39b",
+      "size": 112466,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/e881d717bbed016e700207c437d373628c11e39b"
+    },
+    {
+      "path": "runtime/objc-runtime.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4599f08f5ab19a33617f6f1487e8bfbcef4abbae",
+      "size": 52,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/4599f08f5ab19a33617f6f1487e8bfbcef4abbae"
+    },
+    {
+      "path": "runtime/objc-runtime.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4d94b649ee2622d0dab9bc2c0dbff621bd128dff",
+      "size": 33842,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/4d94b649ee2622d0dab9bc2c0dbff621bd128dff"
+    },
+    {
+      "path": "runtime/objc-sel-old.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "942ddf52abad8e37695e8ee3ae8fd303650594a4",
+      "size": 4892,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/942ddf52abad8e37695e8ee3ae8fd303650594a4"
+    },
+    {
+      "path": "runtime/objc-sel-set.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f4540dba6bbb3e347dbab02b5aa7fe5537871084",
+      "size": 1445,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/f4540dba6bbb3e347dbab02b5aa7fe5537871084"
+    },
+    {
+      "path": "runtime/objc-sel-set.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab21b004d61dca43361633e091e95931e57d2b42",
+      "size": 6419,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/ab21b004d61dca43361633e091e95931e57d2b42"
+    },
+    {
+      "path": "runtime/objc-sel-table.s",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "05b5532732c194f3cd07f409341a44c93838efc9",
+      "size": 1971,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/05b5532732c194f3cd07f409341a44c93838efc9"
+    },
+    {
+      "path": "runtime/objc-sel.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "55d57ebf726e930f882d4ded2d57d5d9d3d54b65",
+      "size": 5023,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/55d57ebf726e930f882d4ded2d57d5d9d3d54b65"
+    },
+    {
+      "path": "runtime/objc-sync.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e9ab64f1e4b368398b0937ec12bc3e0f221120ec",
+      "size": 1757,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/e9ab64f1e4b368398b0937ec12bc3e0f221120ec"
+    },
+    {
+      "path": "runtime/objc-sync.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d5dd019d4bffba8243338809c03ffd1872ff6f44",
+      "size": 9988,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/d5dd019d4bffba8243338809c03ffd1872ff6f44"
+    },
+    {
+      "path": "runtime/objc-typeencoding.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "14edccb54404b8efed5c210c9b609124ba9747b1",
+      "size": 9505,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/14edccb54404b8efed5c210c9b609124ba9747b1"
+    },
+    {
+      "path": "runtime/objc-weak.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8c5005093f04c8edf7dbbc171f24c53a7790ad10",
+      "size": 4985,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/8c5005093f04c8edf7dbbc171f24c53a7790ad10"
+    },
+    {
+      "path": "runtime/objc-weak.mm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3dd6d0ab7a6a4ce46c1ad8083df6a21155577910",
+      "size": 15871,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/3dd6d0ab7a6a4ce46c1ad8083df6a21155577910"
+    },
+    {
+      "path": "runtime/objc.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab6f0dd43d3f9341529e8ea6f1c2781e75c30a0f",
+      "size": 8011,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/ab6f0dd43d3f9341529e8ea6f1c2781e75c30a0f"
+    },
+    {
+      "path": "runtime/objcrt.c",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7570e2d54709cf39904543f7c2b47ae647fed17a",
+      "size": 3167,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/7570e2d54709cf39904543f7c2b47ae647fed17a"
+    },
+    {
+      "path": "runtime/objcrt.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e6fefdfb5f365dc8c8a56ead97b0caddc1da174",
+      "size": 608,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/4e6fefdfb5f365dc8c8a56ead97b0caddc1da174"
+    },
+    {
+      "path": "runtime/runtime.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2e99cf0a455727222b863817823ede05fb1f4979",
+      "size": 76471,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/2e99cf0a455727222b863817823ede05fb1f4979"
+    },
+    {
+      "path": "unexported_symbols",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "73f77a86a51191abdb0f4fc32ca0db582e94da07",
+      "size": 312,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/73f77a86a51191abdb0f4fc32ca0db582e94da07"
+    },
+    {
+      "path": "version.bat",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "7df1c3a5d0bcfa40d0716387d84cce66536792d3",
+      "size": 1053,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/7df1c3a5d0bcfa40d0716387d84cce66536792d3"
+    },
+    {
+      "path": "version.rc",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "709d0a4857a1226390e01c16060339b1da61156d",
+      "size": 971,
+      "url": "https://api.github.com/repos/apple-oss-distributions/objc4/git/blobs/709d0a4857a1226390e01c16060339b1da61156d"
+    }
+  ],
+  "truncated": false
+}

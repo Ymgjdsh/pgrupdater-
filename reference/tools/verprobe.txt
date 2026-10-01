@@ -1,0 +1,83 @@
+SYMBOL DATING TABLE (presence in each SDK own+re-export symbol set, per the lib it is imported from)
+symbol                                                     ord   w/s     12.4    13.0    13.7    14.5    15.6    26.0  
+___darwin_check_fd_set_overflow                            2     W       -       -       direct  -       direct  -     
+__availability_version_check                               2     W       -       direct  direct  -       direct  -     
+_OBJC_CLASS_$_NSConstantIntegerNumber                      14    S       -       direct  direct  direct  direct  notbd 
+_CAFrameRateRangeMake                                      16    S       -       -       -       -       direct  direct
+_OBJC_CLASS_$_UIWindowScene                                18    S       -       direct  direct  reexp   direct  reexp 
+_CTRadioAccessTechnologyNR                                 23    W       -       -       -       direct  direct  direct
+_CTRadioAccessTechnologyNRNSA                              23    W       -       -       -       direct  direct  direct
+_objc_opt_class                                            27    S       -       direct  direct  direct  direct  direct
+_objc_opt_isKindOfClass                                    27    S       -       direct  direct  direct  direct  direct
+_objc_opt_new                                              27    S       -       direct  direct  direct  direct  direct
+_objc_opt_respondsToSelector                               27    S       -       direct  direct  direct  direct  direct
+_AVAudioSessionCategoryAmbient                             28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionCategoryAudioProcessing                     28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionCategoryMultiRoute                          28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionCategoryPlayAndRecord                       28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionCategoryPlayback                            28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionCategoryRecord                              28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionCategorySoloAmbient                         28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionInterruptionNotification                    28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionInterruptionTypeKey                         28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionMediaServicesWereResetNotification          28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionPortAirPlay                                 28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionPortBluetoothA2DP                           28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionPortBluetoothHFP                            28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionPortBluetoothLE                             28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionPortBuiltInMic                              28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionPortBuiltInReceiver                         28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionPortBuiltInSpeaker                          28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionPortCarAudio                                28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionPortHDMI                                    28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionPortHeadphones                              28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionPortHeadsetMic                              28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionPortLineIn                                  28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionPortLineOut                                 28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionPortUSBAudio                                28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionRouteChangeNotification                     28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionRouteChangePreviousRouteKey                 28    W       notbd   notbd   notbd   direct  direct  direct
+_AVAudioSessionRouteChangeReasonKey                        28    W       notbd   notbd   notbd   direct  direct  direct
+_AVFormatIDKey                                             28    W       notbd   notbd   notbd   direct  direct  direct
+_AVLinearPCMBitDepthKey                                    28    W       notbd   notbd   notbd   direct  direct  direct
+_AVLinearPCMIsBigEndianKey                                 28    W       notbd   notbd   notbd   direct  direct  direct
+_AVLinearPCMIsFloatKey                                     28    W       notbd   notbd   notbd   direct  direct  direct
+_AVLinearPCMIsNonInterleaved                               28    W       notbd   notbd   notbd   direct  direct  direct
+_AVNumberOfChannelsKey                                     28    W       notbd   notbd   notbd   direct  direct  direct
+_AVSampleRateKey                                           28    W       notbd   notbd   notbd   direct  direct  direct
+_OBJC_CLASS_$_AVAudioSession                               28    W       notbd   notbd   notbd   direct  direct  direct
+___NSDictionary0__struct                                   29    S       -       direct  direct  direct  direct  direct
+___kCFBooleanTrue                                          29    S       -       direct  direct  direct  direct  direct
+_OBJC_CLASS_$_NSConstantArray                              29    S       -       direct  direct  direct  direct  direct
+
+SWIFT STRONG IMPORTS vs each SDK version (missing counts)
+12.4 ord 32: NO TBD -> all 295 missing
+12.4 ord 37: NO TBD -> all 40 missing
+12.4 ord 40: NO TBD -> all 2 missing
+12.4 ord 45: NO TBD -> all 60 missing
+12.4 TOTAL swift missing: 397
+13.0 ord 32 libswiftCore.dylib           total 295 missing   0
+13.0 ord 37 libswiftDispatch.dylib       total  40 missing   0
+13.0 ord 40 libswiftObjectiveC.dylib     total   2 missing   0
+13.0 ord 45 libswiftFoundation.dylib     total  60 missing   0
+13.0 TOTAL swift missing: 0
+13.7 ord 32 libswiftCore.dylib           total 295 missing   0
+13.7 ord 37 libswiftDispatch.dylib       total  40 missing   0
+13.7 ord 40 libswiftObjectiveC.dylib     total   2 missing   0
+13.7 ord 45 libswiftFoundation.dylib     total  60 missing   0
+13.7 TOTAL swift missing: 0
+14.5 ord 32 libswiftCore.dylib           total 295 missing   0
+14.5 ord 37 libswiftDispatch.dylib       total  40 missing   0
+14.5 ord 40 libswiftObjectiveC.dylib     total   2 missing   0
+14.5 ord 45 libswiftFoundation.dylib     total  60 missing   0
+14.5 TOTAL swift missing: 0
+15.6 ord 32 libswiftCore.dylib           total 295 missing   0
+15.6 ord 37 libswiftDispatch.dylib       total  40 missing   0
+15.6 ord 40 libswiftObjectiveC.dylib     total   2 missing   0
+15.6 ord 45 libswiftFoundation.dylib     total  60 missing   0
+15.6 TOTAL swift missing: 0
+26.0 ord 32: NO TBD -> all 295 missing
+26.0 ord 37: NO TBD -> all 40 missing
+26.0 ord 40: NO TBD -> all 2 missing
+26.0 ord 45: NO TBD -> all 60 missing
+26.0 TOTAL swift missing: 397

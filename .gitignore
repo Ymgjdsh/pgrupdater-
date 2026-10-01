@@ -1,0 +1,33 @@
+# Generated packages and device artifacts
+*.ipa
+*.ips
+*.log
+*.mobileprovision
+*.p12
+*.pem
+*.key
+
+# Local build and analysis outputs
+src/__pycache__/
+src/analysis_*/
+src/portwork/
+src/analysis_pipeline_audit/
+src/report/
+reference/binaries/
+evidence/
+docs/移植说明.md
+docs/Phigros4.0.0-for-iOS12_安装使用说明.md
+docs/STATUS.md
+docs/ios12_report.md
+docs/objc4_relmethodlist.md
+docs/ios12_launch_risk.md
+
+# Local editor and OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Generated inventory/checksum files
+MANIFEST.txt
+*.ipa.sha256

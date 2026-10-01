@@ -1,0 +1,5 @@
+{
+  "replace": {
+    "Payload/Phigros.app/Phigros": "src/analysis_v19/Phigros.cleared"
+  }
+}
