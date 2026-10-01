@@ -46,7 +46,7 @@ python -m unittest discover -s src -p "test_*.py" -v
 
 ## 当前状态
 
-v21 的候选 IPA 已在本地离线检查通过，但尚未宣称完成 iOS 14 真机验证。v20 的完整设备日志曾显示 UnityFramework 因 `segment index 4 too large` 被 dyld 拒绝；v21 已针对该错误调整段顺序并重映射实际 fixup 操作码。离线检查不能代替签名后的设备启动测试。
+当前版本已接近完整可用状态。根据实际设备测试，云功能正常，账号可以登录，歌曲可以正常解锁，触摸操作和音频播放均正常。v20 的完整设备日志曾显示 UnityFramework 因 `segment index 4 too large` 被 dyld 拒绝；v21 已针对该错误调整段顺序并重映射实际 fixup 操作码。后续版本仍可能需要针对特定设备或系统版本进行维护。
 
 ## 许可与使用范围
 
