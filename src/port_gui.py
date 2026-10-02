@@ -10,6 +10,7 @@ import subprocess
 import sys
 import tempfile
 import threading
+import zipfile
 from datetime import datetime
 from pathlib import Path
 import tkinter as tk
@@ -36,8 +37,33 @@ def worker_main(argv: list[str]) -> int:
     try:
         runpy.run_path(str(script), run_name="__main__")
     except SystemExit as error:
-        return int(error.code or 0)
+        if error.code is None:
+            return 0
+        if isinstance(error.code, int):
+            return error.code
+        print(error.code, file=sys.stderr)
+        return 1
     return 0
+
+
+def conversion_command(script: Path, source: Path, output: Path, workdir: Path) -> list[str]:
+    if getattr(sys, "frozen", False):
+        worker = Path(sys.executable).with_name("PhigrosPortWorker.exe")
+        if not worker.is_file():
+            raise FileNotFoundError("便携版缺少 PhigrosPortWorker.exe，请解压完整文件夹后重试。")
+        return [str(worker), "--worker", str(script), str(source), str(output), "--workdir", str(workdir)]
+    return [sys.executable, "-u", str(script), str(source), str(output), "--workdir", str(workdir)]
+
+
+def validate_output(output: Path):
+    if not output.is_file() or not output.stat().st_size:
+        raise ValueError("转换进程退出了，但没有生成 IPA。")
+    with zipfile.ZipFile(output) as archive:
+        members = set(archive.namelist())
+        for member in ("Payload/Phigros.app/Phigros", "Payload/Phigros.app/Info.plist",
+                       "Payload/Phigros.app/Frameworks/UnityFramework.framework/UnityFramework"):
+            if member not in members or not archive.getinfo(member).file_size:
+                raise ValueError("输出 IPA 不完整：" + member)
 
 
 class ConverterApp:
@@ -196,32 +222,39 @@ class ConverterApp:
     def convert(self, source: Path, output: Path):
         # Keep the scratch files beside the destination. The framework is large,
         # and using the system temp drive can add a costly cross-volume copy.
-        local_temp = output.parent / ".phigros-port-work"
+        workdir = None
         try:
-            local_temp.mkdir(parents=True, exist_ok=True)
-            workdir = Path(tempfile.mkdtemp(prefix="build-", dir=local_temp))
-        except OSError:
-            temp_root = Path(tempfile.gettempdir()) / "PhigrosPortGUI"
-            temp_root.mkdir(parents=True, exist_ok=True)
-            workdir = Path(tempfile.mkdtemp(prefix="build-", dir=temp_root))
-        script = bundle_root() / "src" / "port_to_ios12.py"
-        env = os.environ.copy()
-        env["PHI_PORTABLE_WORKER"] = "1"
-        env["PYTHONUTF8"] = "1"
-        command = [sys.executable, str(script), str(source), str(output), "--workdir", str(workdir)]
-        try:
+            local_temp = output.parent / ".phigros-port-work"
+            try:
+                local_temp.mkdir(parents=True, exist_ok=True)
+                workdir = Path(tempfile.mkdtemp(prefix="build-", dir=local_temp))
+            except OSError:
+                workdir = Path(tempfile.mkdtemp(prefix="PhigrosPortGUI-"))
+            script = bundle_root() / "src" / "port_to_ios12.py"
+            env = os.environ.copy()
+            env["PYTHONUTF8"] = "1"
+            env["PYTHONUNBUFFERED"] = "1"
+            if getattr(sys, "frozen", False):
+                env["PHI_PORTABLE_WORKER"] = "1"
+            else:
+                env.pop("PHI_PORTABLE_WORKER", None)
+            command = conversion_command(script, source, output, workdir)
             process = subprocess.Popen(command, cwd=str(script.parent), env=env, stdout=subprocess.PIPE,
                                        stderr=subprocess.STDOUT, text=True, encoding="utf-8", errors="replace",
-                                       bufsize=1)
+                                       bufsize=1, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
             assert process.stdout is not None
-            for line in process.stdout:
-                self.events.put(("log", line))
+            with process.stdout:
+                for line in process.stdout:
+                    self.events.put(("log", line))
             code = process.wait()
-            shutil.rmtree(workdir, ignore_errors=True)
+            if code == 0:
+                validate_output(output)
             self.events.put(("done", str(code)))
         except Exception as error:
-            shutil.rmtree(workdir, ignore_errors=True)
             self.events.put(("error", repr(error)))
+        finally:
+            if workdir is not None:
+                shutil.rmtree(workdir, ignore_errors=True)
 
     def poll_events(self):
         try:
@@ -236,7 +269,10 @@ class ConverterApp:
                     if value == "0":
                         self.status_var.set("转换完成")
                         self.append("转换完成。请使用签名工具重新签名后安装。")
-                        self.reveal_output()
+                        try:
+                            self.reveal_output()
+                        except OSError as error:
+                            self.append("IPA 已生成，打开资源管理器失败：" + str(error))
                         messagebox.showinfo("转换完成", "IPA 已生成，请重新签名后安装。")
                     else:
                         self.status_var.set("转换失败")

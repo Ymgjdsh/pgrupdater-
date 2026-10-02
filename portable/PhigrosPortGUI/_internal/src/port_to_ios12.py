@@ -18,6 +18,7 @@ usage:
                           [--no-quit-patch]
 """
 import argparse, json, os, shutil, subprocess, sys, zipfile, plistlib, tempfile
+import struct
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PY = sys.executable or "python"
@@ -47,6 +48,30 @@ FRAMEWORK_PATCHES = ("rebind_avfaudio.py", "patch_crashret.py",
 MAIN_CONVERSION_FLAGS = ["--no-avail-dispatch", "--no-avail-stubs",
                          "--no-window-shim"]
 DEFAULT_WEAK_FILE = os.path.join(HERE, "report", "weak.txt")
+
+
+def check_unencrypted_header(header, member):
+    if len(header) < 32 or header[:4] != b"\xcf\xfa\xed\xfe":
+        raise ValueError("unsupported input: expected thin arm64 Mach-O in " + member)
+    if struct.unpack_from("<I", header, 4)[0] != 0x100000C:
+        raise ValueError("unsupported CPU: expected arm64 in " + member)
+    count, command_bytes = struct.unpack_from("<II", header, 16)
+    end = 32 + command_bytes
+    if end > len(header):
+        raise ValueError("truncated Mach-O load commands in " + member)
+    offset = 32
+    for _ in range(count):
+        if offset + 8 > end:
+            raise ValueError("truncated load command in " + member)
+        command, size = struct.unpack_from("<II", header, offset)
+        if size < 8 or offset + size > end:
+            raise ValueError("invalid load command size in " + member)
+        if command in (0x21, 0x2C):
+            if size < 20:
+                raise ValueError("truncated encryption command in " + member)
+            if struct.unpack_from("<I", header, offset + 16)[0]:
+                raise ValueError("输入 IPA 仍有 App Store 加密（cryptid=1），当前工具只能转换已解密的 Phigros 4.0.0 IPA：" + member)
+        offset += size
 
 
 def sh(args, expected=None):
@@ -138,6 +163,18 @@ def main():
         for n, _local in PAYLOAD:
             if n not in names:
                 sys.exit(f"not a Phigros IPA: missing {n}")
+        for n in (MAIN, FRAME):
+            with z.open(n) as source:
+                header = source.read(32)
+                if len(header) == 32 and header[:4] == b"\xcf\xfa\xed\xfe":
+                    size = struct.unpack_from("<I", header, 20)[0]
+                    if size > 1 << 20:
+                        sys.exit("unsupported Mach-O load-command size")
+                    header += source.read(size)
+            try:
+                check_unencrypted_header(header, n)
+            except ValueError as error:
+                sys.exit(str(error))
         for n, local in PAYLOAD:
             dst = os.path.join(wd, local)
             with z.open(n) as f, open(dst, "wb") as o:

@@ -3,6 +3,7 @@ import os
 import plistlib
 import shutil
 import sys
+import struct
 import tempfile
 import unittest
 import zipfile
@@ -15,6 +16,15 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 class PipelineTests(unittest.TestCase):
+    def test_encrypted_input_is_rejected_before_conversion(self):
+        for cryptid in (0, 1):
+            header = struct.pack("<8I", 0xFEEDFACF, 0x100000C, 0, 2, 1, 24, 0, 0)
+            header += struct.pack("<6I", 0x2C, 24, 0, 0, cryptid, 0)
+            if cryptid:
+                with self.assertRaisesRegex(ValueError, "cryptid=1"):
+                    port.check_unencrypted_header(header, "fixture")
+            else:
+                port.check_unencrypted_header(header, "fixture")
     def test_required_weak_list_is_shipped(self):
         weak = Path(port.DEFAULT_WEAK_FILE)
         self.assertTrue(weak.is_file())

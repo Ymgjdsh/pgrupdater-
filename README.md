@@ -48,6 +48,10 @@ path\to\pgrupdater-\port_to_ios12.cmd path\to\decrypted-input.ipa path\to\output
 
 不想使用命令行时，直接打开 `portable/PhigrosPortGUI/PhigrosPortGUI.exe`，选择输入和输出文件即可。便携版已经包含 Python 运行环境和弱链接清单，不需要另外安装 Python。如果当前目录已经是 `src`，不要再次写 `src/port_to_ios12.py`。
 
+请保留整个便携文件夹，包括 `PhigrosPortWorker.exe` 和 `_internal`。
+转换在隐藏的工作进程中运行，日志会实时显示；只有检查输出 IPA 完整后才提示完成。
+App Store 原始加密 IPA（`cryptid=1`）会在开始时被明确拒绝，本工具不提供解密功能。
+
 运行测试：
 
 ```powershell
