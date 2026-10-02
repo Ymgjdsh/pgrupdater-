@@ -70,7 +70,7 @@ def check_unencrypted_header(header, member):
             if size < 20:
                 raise ValueError("truncated encryption command in " + member)
             if struct.unpack_from("<I", header, offset + 16)[0]:
-                raise ValueError("输入 IPA 仍有 App Store 加密（cryptid=1），当前工具只能转换已解密的 Phigros 4.0.0 IPA：" + member)
+                raise ValueError("输入 IPA 仍有 App Store 加密（cryptid=1），当前工具只能转换已解密的 Phigros 4.0.0 / 4.0.1 IPA：" + member)
         offset += size
 
 
@@ -163,6 +163,9 @@ def main():
         for n, _local in PAYLOAD:
             if n not in names:
                 sys.exit(f"not a Phigros IPA: missing {n}")
+        info = plistlib.loads(z.read(PLIST))
+        print("input version:", info.get("CFBundleShortVersionString", "unknown"),
+              "build:", info.get("CFBundleVersion", "unknown"), flush=True)
         for n in (MAIN, FRAME):
             with z.open(n) as source:
                 header = source.read(32)

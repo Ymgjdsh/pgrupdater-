@@ -19,14 +19,28 @@ CHUNK = 1 << 20
 
 
 def parse_central(b):
-    i = b.rfind(b"PK\x05\x06")
+    # Signatures can occur inside compressed game resources or ZIP comments.
+    # EOCD must end exactly at EOF, including its declared comment length.
+    lo = max(0, len(b) - EOCD.size - 0xFFFF)
+    i = b.rfind(b"PK\x05\x06", lo)
+    while i >= 0:
+        if i + EOCD.size <= len(b):
+            comment_size = struct.unpack_from("<H", b, i + 20)[0]
+            if i + EOCD.size + comment_size == len(b):
+                break
+        i = b.rfind(b"PK\x05\x06", lo, i)
     if i < 0:
-        raise SystemExit("no EOCD")
+        raise SystemExit("no valid EOCD")
     sig, dnum, cnum, n_disk, n_tot, cdsize, cdoff, clen = EOCD.unpack_from(b, i)
-    if b.rfind(b"PK\x06\x07") >= 0:
+    # A ZIP64 locator belongs immediately before EOCD, never in file data.
+    if i >= 20 and b[i-20:i-16] == b"PK\x06\x07":
         raise SystemExit("ZIP64 locator present - unsupported")
-    if dnum or n_disk != n_tot:
+    if n_tot == 0xFFFF or cdsize == 0xFFFFFFFF or cdoff == 0xFFFFFFFF:
+        raise SystemExit("ZIP64 central directory - unsupported")
+    if dnum or cnum or n_disk != n_tot:
         raise SystemExit("multi-disk zip - unsupported")
+    if cdoff + cdsize != i:
+        raise SystemExit("central directory boundary mismatch")
     ents = []
     p = cdoff
     for _ in range(n_tot):

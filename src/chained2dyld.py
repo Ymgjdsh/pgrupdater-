@@ -1129,7 +1129,9 @@ def convert(inpath, outpath, weak_names=frozenset(), weak_all_missing=False,
     if n_bad: print(f"  !! {n_bad} fixups outside file (bss?) -- skipped")
 
     # 1. code patches (Application.Quit -> RET)
-    for off in quit_patches:
+    from runtime_profiles import require_bytes
+    for va in quit_patches:
+        off = require_bytes(m, va, bytes.fromhex("f44fbea9fd7b01a9fd430091"), "Application.Quit")
         old = bytes(buf[off:off+4])
         buf[off:off+4] = b"\xC0\x03\x5F\xD6"
         if verbose: print(f"  patch 0x{off:X}: {old.hex()} -> c0035fd6 (RET)")
@@ -1463,7 +1465,22 @@ def main():
     if a.verify:
         verify_classic(a.inp); return
     print(f"== {a.inp}")
-    qp = (0x38E8964, 0x38E89B4) if a.patch_quit else ()
+    qp = ()
+    if a.patch_quit:
+        from runtime_profiles import profile_for
+        image = MachO(open(a.inp, "rb").read())
+        profile = profile_for(image)
+        qp = profile.quit_sites
+        # The first wrapper resolves this exact icall. Check that the code
+        # still points to it before changing either Quit overload.
+        pc = qp[0] + 0x24
+        w0, w1 = rd(image.buf, image.foff(pc), "II")
+        if w0 & 0x9F00001F != 0x90000008 or w1 & 0xFFC003FF != 0x91000108:
+            raise SystemExit("Application.Quit resolver instructions do not match")
+        literal = _dec_adrp(w0, pc) + ((w1 >> 10) & 0xFFF)
+        from runtime_profiles import require_bytes
+        require_bytes(image, literal, b"UnityEngine.Application::Quit(System.Int32)\0", "Quit icall")
+        print("  runtime profile:", profile.version)
     out = a.out or (a.inp + ".dyldinfo")
     convert(a.inp, out, weak_names=wk, weak_all_missing=a.weak_all,
             minos=mi, sdk=sd, quit_patches=qp,

@@ -169,9 +169,13 @@ def main(ppath, cpath):
        ms["initprot"] & 0x2 == 0x2 and ms["maxprot"] & 0x2 == 0x2,
        f"initprot={ms['initprot']} maxprot={ms['maxprot']}")
     others = [s for s in cm.segments if s["name"] not in (C.REL_METH_SEG,)]
-    ok("new segment vm range does not overlap __LINKEDIT",
-       ms["vmaddr"] >= C.round_up(le["vmaddr"] + le["vmsize"], 0x4000),
-       f"new 0x{ms['vmaddr']:x} vs linkedit end 0x{le['vmaddr'] + le['vmsize']:x}")
+    # v21 moves LINKEDIT after the method segment in virtual-address order.
+    # Non-overlap is symmetric; requiring the old ordering rejects valid files.
+    overlaps = [s["name"] for s in others if s["vmsize"] and
+                ms["vmaddr"] < s["vmaddr"] + s["vmsize"] and
+                s["vmaddr"] < ms["vmaddr"] + ms["vmsize"]]
+    ok("new segment vm range does not overlap any other segment",
+       not overlaps, f"overlapping segments: {overlaps}")
     ok("section is inside the segment file range",
        ms["fileoff"] <= ns["offset"] and ns["offset"] + ns["size"] <= ms["fileoff"] + ms["filesize"],
        f"offset=0x{ns['offset']:x} size=0x{ns['size']:x}")

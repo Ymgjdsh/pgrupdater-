@@ -2,7 +2,7 @@ Phigros iOS 12+ 便携转换器
 
 使用方法：
 1. 双击 PhigrosPortGUI.exe。
-2. 选择从 App Store 抓取并已解密的正版 Phigros 4.0.0 IPA。
+2. 选择 Phigros 4.0.0 / 4.0.1 破壳 IPA（已解密）。
 3. 选择输出 IPA 文件名，点击“开始转换”。
 4. 默认会生成带 `_iOS12_ported_时间戳` 的新文件名，避免覆盖或混淆原 IPA。
 5. 转换完成后，程序会自动打开资源管理器并选中生成的 IPA；再用 Sideloadly、AltStore 或其他你信任的工具重新签名并安装。
@@ -10,7 +10,10 @@ Phigros iOS 12+ 便携转换器
 说明：
 - 本程序不需要另外安装 Python。
 - 请保留完整文件夹中的 PhigrosPortGUI.exe、PhigrosPortWorker.exe 和 _internal，不要只复制界面 EXE。
-- 输入必须是 arm64、已解密的 Phigros 4.0.0 IPA；App Store 加密包不能直接转换。
+- 输入必须是 arm64、已解密的 Phigros 4.0.0 / 4.0.1 IPA；App Store 加密包不能直接转换。
+- 4.0.0 已有用户真机验证；4.0.1 目前为离线验证通过的候选版本，仍需要真机测试。
+- 按 UnityFramework 构建标识选择补丁，未知构建或指令不匹配时会停止。
+- Swift 运行库要求 iOS 12.2 或更高版本；iOS 12.0/12.1 暂不保证。
 - 检测到 cryptid=1 时会立即停止并显示原因；等待更长时间不能解决输入包加密问题。
 - 后台转换过程会实时显示日志，输出 IPA 通过完整性检查后才提示完成。
 - 输出文件不能与输入文件同名。

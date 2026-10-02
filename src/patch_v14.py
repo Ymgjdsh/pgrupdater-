@@ -38,6 +38,7 @@ import struct
 import sys
 
 import chained2dyld as C
+from runtime_profiles import profile_for, require_bytes
 
 # --- sites -----------------------------------------------------------------
 AVAIL_ENTRY = 0x143B914
@@ -139,6 +140,9 @@ def main(argv):
             want = (want + (0, 0, 0))[:3]
 
     m = C.MachO(open(src, "rb").read())
+    profile = profile_for(m)
+    AVAIL_ENTRY = profile.availability_entry
+    TEXT_CAVE_START = max(profile.availability_cave, C.text_code_va(m, m.buf))
     buf = bytearray(m.buf)
     patches = []
 
@@ -156,6 +160,7 @@ def main(argv):
         return struct.unpack_from("<I", buf, m.foff(va))[0]
 
     if do_avail:
+        require_bytes(m, AVAIL_ENTRY, bytes.fromhex("ff0301d1f65701a9f44f02a9fd7b03a9"), "availability helper")
         got = bytes(buf[m.foff(AVAIL_ENTRY):m.foff(AVAIL_ENTRY) + 8])
         assert got == AVAIL_ENTRY_EXPECT, \
             "unexpected entry bytes at 0x%x: %s" % (AVAIL_ENTRY, got.hex())

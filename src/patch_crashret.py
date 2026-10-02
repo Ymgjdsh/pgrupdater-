@@ -17,6 +17,7 @@ import struct
 import sys
 
 import chained2dyld as C
+from runtime_profiles import profile_for, require_bytes
 
 CRASH_CB_VA = 0x89A668
 PROLOGUE = bytes.fromhex("ff8301d1")   # sub sp, sp, #0x60
@@ -29,6 +30,9 @@ def main(argv):
     src, dst = argv
     buf = bytearray(open(src, "rb").read())
     m = C.MachO(bytes(buf))
+    CRASH_CB_VA = profile_for(m).crash_callback
+    require_bytes(m, CRASH_CB_VA, bytes.fromhex(
+        "ff8301d1fa6701a9f85f02a9f65703a9f44f04a9fd7b05a9fd430191"), "crash callback")
     fo = m.foff(CRASH_CB_VA)
     got = bytes(buf[fo:fo + 4])
     if got != PROLOGUE:

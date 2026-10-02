@@ -9,6 +9,7 @@ import struct
 import sys
 
 import chained2dyld as C
+from runtime_profiles import profile_for
 
 LC_DYLD_INFO = 0x22
 LC_DYLD_INFO_ONLY = 0x80000022
@@ -114,7 +115,7 @@ def code_sections(m):
 def find_zero_run(m, start, need):
     b = m.buf
     seg = m.seg_by_name["__TEXT"]
-    lo = max(start, seg["fileoff"])
+    lo = C.round_up(max(start, seg["fileoff"]), 4)
     hi = seg["fileoff"] + seg["filesize"]
     i = lo
     while i < hi - need:
@@ -124,9 +125,9 @@ def find_zero_run(m, start, need):
                 j += 1
             if j - i >= need:
                 return i, j - i
-            i = j
+            i = C.round_up(j, 4)
         else:
-            i += 1
+            i += 4
     raise SystemExit("no %d-byte zero run in __TEXT after 0x%x" % (need, start))
 
 
@@ -187,6 +188,7 @@ def main(argv):
     do_dict = "--no-dict" not in argv
     dry = "--dry-run" in argv
     m = C.MachO(open(src, "rb").read())
+    profile = profile_for(m)
     b = m.buf
 
     # ---------------- (a) asio empty-executor guard
@@ -224,7 +226,8 @@ def main(argv):
 
     if do_asio and sites and not dry:
         need = 16 * len(sites) + 16
-        fo, runlen = find_zero_run(m, 0x444CE00, need)
+        start = max(profile.asio_cave, C.text_code_va(m, b))
+        fo, runlen = find_zero_run(m, start, need)
         cave_va = m.seg_by_name["__TEXT"]["vmaddr"] + (fo - m.seg_by_name["__TEXT"]["fileoff"])
         print("cave area @0x%x (file 0x%x, run %d bytes)" % (cave_va, fo, runlen))
         cur = cave_va

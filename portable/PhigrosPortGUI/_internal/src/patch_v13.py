@@ -32,6 +32,7 @@ import sys
 
 import chained2dyld as C
 import patch_v12 as P12
+from runtime_profiles import profile_for, require_bytes
 
 # --- sites -----------------------------------------------------------------
 CFSTR_VA = 0x47A1C20          # __CFConstantString  @"bundle_id=%@"
@@ -109,7 +110,7 @@ def cbz64(pc, rt, target):
     return 0xB4000000 | (((d >> 2) & 0x7FFFF) << 5) | rt
 
 
-def build_hook(code_va, cf_slot_va):
+def build_hook(code_va, cf_slot_va, cache_va=CACHE_VA, cstr_va=CSTR_VA):
     """Assemble the bundleIdentifier hook; returns bytes."""
     idx = {}
 
@@ -122,8 +123,8 @@ def build_hook(code_va, cf_slot_va):
     words[2] = BLR_X16                                     # x0 = [bundle bundleIdentifier]
     words[3] = MOV_X9_X0                                   # default answer = real value
     words[4] = str64(0, 31, 0x10)                          # fallback copy
-    words[5] = adrp(8, CACHE_VA, here(5))
-    words[6] = add_imm(8, 8, CACHE_VA & 0xFFF)             # x8 = &cache
+    words[5] = adrp(8, cache_va, here(5))
+    words[6] = add_imm(8, 8, cache_va & 0xFFF)             # x8 = &cache
     words[7] = ldr64(10, 8, 0)
     words[8] = cbz64(here(8), 10, here(11))                # no cache -> create
     words[9] = MOV_X9_X10
@@ -133,8 +134,8 @@ def build_hook(code_va, cf_slot_va):
     words[12] = adrp(16, cf_slot_va, here(12))
     words[13] = ldr64(16, 16, cf_slot_va & 0xFFF)
     words[14] = MOV_X0_XZR                                 # allocator = NULL
-    words[15] = adrp(1, CSTR_VA, here(15))
-    words[16] = add_imm(1, 1, CSTR_VA & 0xFFF)
+    words[15] = adrp(1, cstr_va, here(15))
+    words[16] = add_imm(1, 1, cstr_va & 0xFFF)
     words[17] = MOVZ_W2_0100
     words[18] = MOVK_W2_0800_L16                           # w2 = kCFStringEncodingUTF8
     words[19] = BLR_X16
@@ -178,6 +179,20 @@ def main(argv):
     do_lit = "--no-literal" not in flags
 
     m = C.MachO(open(src, "rb").read())
+    profile = profile_for(m)
+    CFSTR_VA = profile.cfstring
+    CFSTR_STR, CFSTR_LEN, CFSTR_FLAGS = CFSTR_VA + 0x10, CFSTR_VA + 0x18, CFSTR_VA + 8
+    OLD_STR_VA = profile.bundle_literal
+    STUB_VA, STUB_BR_VA, SELREF_VA = profile.bundle_stub, profile.bundle_stub + 0x10, profile.bundle_selref
+    TEXT_CAVE_START = max(profile.bundle_cave, C.text_code_va(m, m.buf))
+    meta = m.seg_by_name["__DATA_METHLIST"]
+    META_END = meta["vmaddr"] + meta["filesize"]
+    LITERAL_VA, CSTR_VA, CACHE_VA = META_END - 0x200, META_END - 0x1C0, META_END - 0x1A0
+    used_end = max(s["addr"] + s["size"] for s in m.sections if s["seg"] == "__DATA_METHLIST")
+    if LITERAL_VA < used_end:
+        raise SystemExit("No free metadata tail for bundle identifier compatibility")
+    if do_lit:
+        require_bytes(m, OLD_STR_VA, b"bundle_id=%@\0", "bundle literal")
     buf = bytearray(m.buf)
     patches = []
 
@@ -203,6 +218,7 @@ def main(argv):
         assert rdw(CFSTR_STR) == OLD_STR_VA, "unexpected literal ptr 0x%x" % rdw(CFSTR_STR)
         assert rdw(CFSTR_LEN) == OLD_LEN, "unexpected literal len %d" % rdw(CFSTR_LEN)
     if do_hook:
+        require_bytes(m, rdw(SELREF_VA), b"bundleIdentifier\0", "bundle selector")
         assert rdd(STUB_BR_VA) == 0xD61F0200, "stub tail is not `br x16`"
         assert rdd(STUB_VA) & 0x9F000000 == 0x90000000, "stub head is not adrp"
         assert rdd(STUB_VA + 4) & 0xFFC00000 == 0xF9400000, "stub has no ldr x1"
@@ -239,7 +255,7 @@ def main(argv):
                 break
         assert cf_va is not None, "_CFStringCreateWithCString has no bind slot"
         cave = find_zero_run(m, TEXT_CAVE_START, HOOK_NEED)
-        hook = build_hook(cave, cf_va)
+        hook = build_hook(cave, cf_va, CACHE_VA, CSTR_VA)
         put(cave, hook, "bundleIdentifier hook (%d bytes)" % len(hook))
         put(STUB_BR_VA, struct.pack("<I", b_insn(STUB_BR_VA, cave)), "stub tail -> hook")
         put(CSTR_VA, CSTR, "official-id C string")

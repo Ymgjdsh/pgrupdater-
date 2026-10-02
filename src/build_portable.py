@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SCRIPTS = ("port_gui.py", "port_worker.py", "port_to_ios12.py", "chained2dyld.py",
+SCRIPTS = ("port_gui.py", "port_worker.py", "runtime_profiles.py", "port_to_ios12.py", "chained2dyld.py",
            "fix_classic_segments.py", "verify_ios14.py", "add_sig_reserve.py",
            "strip_legacy_version.py", "canonicalize_linkedit.py", "relocate_streams.py",
            "clear_codesig.py", "patch_crashret.py", "patch_v12.py", "patch_v13.py",
@@ -20,6 +20,7 @@ def main():
     (staging / "report").mkdir(exist_ok=True)
     shutil.copyfile(ROOT / "src/report/weak.txt", staging / "report/weak.txt")
     options = ["--noconfirm", "--clean", "--onedir", "--hidden-import", "plistlib",
+               "--hidden-import", "dataclasses", "--hidden-import", "uuid",
                "--hidden-import", "mmap", "--add-data", str(staging) + ";src"]
     for name, entry, mode in (("PhigrosPortGUI", "port_gui.py", "--windowed"),
                               ("PhigrosPortWorker", "port_worker.py", "--console")):
