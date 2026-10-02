@@ -12,7 +12,13 @@ src/__pycache__/
 src/analysis_*/
 src/portwork/
 src/analysis_pipeline_audit/
+build/
+dist/
+portable_build/
+*.spec
 src/report/
+!src/report/
+!src/report/weak.txt
 reference/binaries/
 evidence/
 docs/移植说明.md
