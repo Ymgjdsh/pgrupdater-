@@ -4,6 +4,9 @@
 
 项目参考了 [Han_BuR 的研究成果](https://space.bilibili.com/1575018325)，并结合 Apple 开源的 dyld、objc4 资料以及设备日志进行验证。这里提供的是研究和转换工具，不包含 Phigros 的 IPA、游戏资源或签名证书。
 
+<img width="895" height="615" alt="image" src="https://github.com/user-attachments/assets/e8cfe972-d360-44c7-b81a-4052c87c3783" />
+
+
 ## 主要工作
 
 - 将 arm64 chained fixups 转换为 iOS 12 可处理的 classic dyld rebase/bind 信息。
