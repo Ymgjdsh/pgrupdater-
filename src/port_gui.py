@@ -99,7 +99,7 @@ class ConverterApp:
                  font=("Segoe UI", 10, "bold"), anchor="w").grid(row=0, column=0, sticky="w")
         tk.Label(header, text="iOS 12+ compatibility converter", bg=self.colors["bg"], fg=self.colors["text"],
                  font=("Segoe UI", 21, "bold"), anchor="w").grid(row=1, column=0, sticky="w", pady=(4, 0))
-        tk.Label(header, text="支持 Phigros 4.0.0 / 4.0.1 破壳 IPA · 4.0.1 待真机验证", bg=self.colors["bg"],
+        tk.Label(header, text="支持 Phigros 4.0.0 / 4.0.1 破壳 IPA · 均已获真机验证", bg=self.colors["bg"],
                  fg=self.colors["muted"], font=("Segoe UI", 10), anchor="w").grid(row=2, column=0, sticky="w", pady=(6, 0))
         self.status_var = tk.StringVar(value="等待选择 IPA")
         tk.Label(header, textvariable=self.status_var, bg=self.colors["bg"], fg=self.colors["blue"],
