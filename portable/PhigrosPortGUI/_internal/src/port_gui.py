@@ -99,7 +99,7 @@ class ConverterApp:
                  font=("Segoe UI", 10, "bold"), anchor="w").grid(row=0, column=0, sticky="w")
         tk.Label(header, text="iOS 12+ compatibility converter", bg=self.colors["bg"], fg=self.colors["text"],
                  font=("Segoe UI", 21, "bold"), anchor="w").grid(row=1, column=0, sticky="w", pady=(4, 0))
-        tk.Label(header, text="将已解密的正版 Phigros 4.0.0 IPA 转换为兼容版本", bg=self.colors["bg"],
+        tk.Label(header, text="将 Phigros 4.0.0 破壳 IPA 转换为兼容版本", bg=self.colors["bg"],
                  fg=self.colors["muted"], font=("Segoe UI", 10), anchor="w").grid(row=2, column=0, sticky="w", pady=(6, 0))
         self.status_var = tk.StringVar(value="等待选择 IPA")
         tk.Label(header, textvariable=self.status_var, bg=self.colors["bg"], fg=self.colors["blue"],
@@ -111,7 +111,7 @@ class ConverterApp:
         panel.columnconfigure(1, weight=1)
         tk.Label(panel, text="INPUT", bg=self.colors["panel"], fg=self.colors["accent"],
                  font=("Segoe UI", 8, "bold")).grid(row=0, column=0, columnspan=3, sticky="w", pady=(0, 10))
-        tk.Label(panel, text="正版 IPA", bg=self.colors["panel"], fg=self.colors["text"],
+        tk.Label(panel, text="破壳 IPA", bg=self.colors["panel"], fg=self.colors["text"],
                  font=("Segoe UI", 10)).grid(row=1, column=0, sticky="w", pady=6)
         self.input_var = tk.StringVar()
         self.input_entry = tk.Entry(panel, textvariable=self.input_var, bg=self.colors["panel2"], fg=self.colors["text"],
@@ -174,7 +174,7 @@ class ConverterApp:
         self.log.configure(state="disabled")
 
     def choose_input(self):
-        path = filedialog.askopenfilename(title="选择正版 Phigros IPA", filetypes=[("IPA 文件", "*.ipa"), ("所有文件", "*.*")])
+        path = filedialog.askopenfilename(title="选择 Phigros 破壳 IPA", filetypes=[("IPA 文件", "*.ipa"), ("所有文件", "*.*")])
         if path:
             self.input_var.set(path)
             self.status_var.set("已选择输入文件")
