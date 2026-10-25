@@ -20,6 +20,9 @@ usage:
 import argparse, json, os, shutil, subprocess, sys, zipfile, plistlib, tempfile
 import struct
 
+from chained2dyld import MachO
+from runtime_profiles import profile_for
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 PY = sys.executable or "python"
 
@@ -70,8 +73,16 @@ def check_unencrypted_header(header, member):
             if size < 20:
                 raise ValueError("truncated encryption command in " + member)
             if struct.unpack_from("<I", header, offset + 16)[0]:
-                raise ValueError("输入 IPA 仍有 App Store 加密（cryptid=1），当前工具只能转换已解密的 Phigros 4.0.0 / 4.0.1 IPA：" + member)
+                raise ValueError("输入 IPA 仍有 App Store 加密（cryptid=1），当前工具只能转换已解密的、已识别构建的 Phigros IPA：" + member)
         offset += size
+
+
+def check_framework_profile(header, declared_version):
+    """Reject unknown or mislabeled frameworks before extracting the large payload."""
+    profile = profile_for(MachO(header))
+    if declared_version and declared_version != profile.version:
+        raise ValueError(f"IPA 声称是 {declared_version}，但 UnityFramework 属于 {profile.version}；拒绝混用补丁")
+    return profile
 
 
 def sh(args, expected=None):
@@ -164,7 +175,8 @@ def main():
             if n not in names:
                 sys.exit(f"not a Phigros IPA: missing {n}")
         info = plistlib.loads(z.read(PLIST))
-        print("input version:", info.get("CFBundleShortVersionString", "unknown"),
+        declared_version = info.get("CFBundleShortVersionString")
+        print("input version:", declared_version or "unknown",
               "build:", info.get("CFBundleVersion", "unknown"), flush=True)
         for n in (MAIN, FRAME):
             with z.open(n) as source:
@@ -176,6 +188,9 @@ def main():
                     header += source.read(size)
             try:
                 check_unencrypted_header(header, n)
+                if n == FRAME:
+                    profile = check_framework_profile(header, declared_version)
+                    print("recognized UnityFramework profile:", profile.version, flush=True)
             except ValueError as error:
                 sys.exit(str(error))
         for n, local in PAYLOAD:

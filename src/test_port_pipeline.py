@@ -8,7 +8,7 @@ import tempfile
 import unittest
 import zipfile
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 import port_to_ios12 as port
 
@@ -82,7 +82,9 @@ class PipelineTests(unittest.TestCase):
             try:
                 os.chdir(root)
                 args = ["port_to_ios12.py", "input.ipa", "output.ipa", "--workdir", "work"]
-                with patch.object(sys, "argv", args), patch.object(port, "convert_image", convert_for_path_test):
+                with patch.object(sys, "argv", args), \
+                     patch.object(port, "check_framework_profile", return_value=Mock(version="fixture")), \
+                     patch.object(port, "convert_image", convert_for_path_test):
                     port.main()
             finally:
                 os.chdir(previous_cwd)

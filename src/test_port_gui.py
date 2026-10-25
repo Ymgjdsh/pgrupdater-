@@ -1,5 +1,6 @@
 """Regression coverage for the GUI accidentally spawning another GUI."""
 import queue
+import plistlib
 import sys
 import tempfile
 import unittest
@@ -10,6 +11,15 @@ import port_gui as gui
 
 
 class GuiTests(unittest.TestCase):
+    def test_generic_input_name_includes_ipa_version(self):
+        with tempfile.TemporaryDirectory() as folder:
+            source = Path(folder) / "phigros.ipa"
+            with zipfile.ZipFile(source, "w") as archive:
+                archive.writestr("Payload/Phigros.app/Info.plist",
+                                 plistlib.dumps({"CFBundleShortVersionString": "4.0.3"}))
+            name = gui.ConverterApp.default_output(source).name
+            self.assertTrue(name.startswith("phigros_4.0.3_iOS12_ported_"), name)
+
     def test_worker_preserves_exit_codes_and_prints_text_errors(self):
         with patch.object(gui.os, "chdir"), patch.object(sys, "argv"), \
              patch.object(sys, "path", list(sys.path)), patch.object(gui.runpy, "run_path") as run:

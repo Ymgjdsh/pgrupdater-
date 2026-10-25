@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import os
+import plistlib
 import queue
+import re
 import runpy
 import shutil
 import subprocess
@@ -99,7 +101,7 @@ class ConverterApp:
                  font=("Segoe UI", 10, "bold"), anchor="w").grid(row=0, column=0, sticky="w")
         tk.Label(header, text="iOS 12+ compatibility converter", bg=self.colors["bg"], fg=self.colors["text"],
                  font=("Segoe UI", 21, "bold"), anchor="w").grid(row=1, column=0, sticky="w", pady=(4, 0))
-        tk.Label(header, text="支持 Phigros 4.0.0 / 4.0.1 破壳 IPA · 均已获真机验证", bg=self.colors["bg"],
+        tk.Label(header, text="4.0.0 / 4.0.1 已真机验证 · 4.0.3 破壳 IPA 待真机测试", bg=self.colors["bg"],
                  fg=self.colors["muted"], font=("Segoe UI", 10), anchor="w").grid(row=2, column=0, sticky="w", pady=(6, 0))
         self.status_var = tk.StringVar(value="等待选择 IPA")
         tk.Label(header, textvariable=self.status_var, bg=self.colors["bg"], fg=self.colors["blue"],
@@ -194,7 +196,15 @@ class ConverterApp:
     @staticmethod
     def default_output(source: Path) -> Path:
         stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        return source.with_name(source.stem + "_iOS12_ported_" + stamp + ".ipa")
+        stem = source.stem
+        try:
+            with zipfile.ZipFile(source) as archive:
+                version = plistlib.loads(archive.read("Payload/Phigros.app/Info.plist")).get("CFBundleShortVersionString")
+            if isinstance(version, str) and re.fullmatch(r"[0-9]+[.][0-9]+[.][0-9]+", version) and version not in stem:
+                stem += "_" + version
+        except (OSError, KeyError, ValueError, zipfile.BadZipFile):
+            pass  # The converter will report invalid inputs; naming remains available.
+        return source.with_name(stem + "_iOS12_ported_" + stamp + ".ipa")
 
     def start(self):
         if self.running:

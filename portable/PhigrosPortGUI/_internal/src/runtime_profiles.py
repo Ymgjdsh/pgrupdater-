@@ -2,7 +2,7 @@
 
 Profiles are selected by LC_UUID, which survives the converter's link-edit
 rewrites. Patch entry bytes and semantic anchors are checked separately.
-The 4.0.1 profile is offline-verified; device validation is still required.
+The 4.0.3 profile requires device validation after offline checks.
 """
 from dataclasses import dataclass
 from uuid import UUID
@@ -32,6 +32,10 @@ PROFILES = {
         "4.0.1", (0x391D28C, 0x391D2DC), 0x8A1CD4, 0x144363C,
         0x47DEC68, 0x439C724, 0x3C2AF80, 0x4807DB8,
         0x44891A0, 0x44891A0, 0x44891A0),
+    "70f666eb-6f4e-325e-9e8a-75b568085f26": RuntimeProfile(
+        "4.0.3", (0x39237A0, 0x39237F0), 0x8A1D48, 0x1443D08,
+        0x47E6FE8, 0x43A3874, 0x3C31620, 0x480FDB8,
+        0x4490440, 0x4490440, 0x4490440),
 }
 
 

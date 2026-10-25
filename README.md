@@ -1,8 +1,8 @@
-# Phigros 4.0.0 / 4.0.1 iOS 12+ 兼容移植工具链
+# Phigros iOS 12+ 兼容移植工具链
 
-**目前支持 Phigros 4.0.0 和 4.0.1 的转换。**
+**4.0.0、4.0.1 已获真机验证；4.0.3 已完成离线转换，等待真机验证。**
 
-本项目将原本要求 iOS 15 或更高版本的 Phigros 4.0.0 / 4.0.1，转换为使用 iOS 12 仍能识别的 Mach-O 加载信息，并处理运行时兼容问题。目标系统范围是 iOS 12 及更高版本；Swift 运行库要求 iOS 12.2 或更高版本，iOS 12.0/12.1 暂不保证。具体设备是否能完整运行，仍取决于设备架构、系统组件、签名方式和游戏运行时行为。
+本项目将原本要求 iOS 15 或更高版本的 Phigros 4.0.0 / 4.0.1 / 4.0.3，转换为使用 iOS 12 仍能识别的 Mach-O 加载信息，并处理运行时兼容问题。目标系统范围是 iOS 12 及更高版本；Swift 运行库要求 iOS 12.2 或更高版本，iOS 12.0/12.1 暂不保证。具体设备是否能完整运行，仍取决于设备架构、系统组件、签名方式和游戏运行时行为。
 
 4.0.0 和 4.0.1 均已获得用户真机验证；用户反馈 4.0.1 转换后的游戏可以正常运行。
 
@@ -26,7 +26,7 @@
 | --- | --- |
 | `src/chained2dyld.py` | Mach-O 转换主程序 |
 | `src/port_to_ios12.py` | 从解密 IPA 执行完整转换流程 |
-| `src/runtime_profiles.py` | 按 UnityFramework UUID 选择 4.0.0 / 4.0.1 补丁位置 |
+| `src/runtime_profiles.py` | 按 UnityFramework UUID 选择 4.0.0 / 4.0.1 / 4.0.3 补丁位置 |
 | `src/fix_classic_segments.py` | 修复 classic fixup 的段顺序和段索引 |
 | `src/verify_ios14.py` | iOS 12/13/14 加载规则的离线检查 |
 | `src/verify_segment_repair.py` | 按虚拟地址和符号语义比较修复前后文件 |
@@ -39,7 +39,7 @@
 
 ## 使用
 
-需要 Python 3.10 或更高版本。输入必须是已经解密的、arm64 的 Phigros 4.0.0 / 4.0.1 IPA（破壳 IPA）；本项目不提供该输入文件。工具只对已识别的 UnityFramework 构建应用固定地址补丁，未知构建会停止。
+需要 Python 3.10 或更高版本。输入必须是已经解密的、arm64 的 Phigros 4.0.0 / 4.0.1 / 4.0.3 IPA（破壳 IPA）；本项目不提供该输入文件。工具只对已识别的 UnityFramework 构建应用固定地址补丁，未知构建或 IPA 声称版本与二进制不符时会停止。4.0.3 目前属于待真机验证的候选支持。
 
 ```powershell
 # 在仓库根目录执行
@@ -78,9 +78,15 @@ portable_build/venv/Scripts/python.exe src/build_portable.py
 
 ## 当前状态
 
+2026-10-25：针对已解密的 Phigros 4.0.3（UnityFramework UUID `70f666eb-6f4e-325e-9e8a-75b568085f26`）定位并校验新版补丁点。完整 IPA 转换、加载规则检查与 ZIP CRC 检查通过；尚未确认真机启动和功能表现。详见 `docs/V23_403_SUPPORT.md`。
+
 2026-10-02：加入 Phigros 4.0.1（build 6）支持，重新定位退出函数、崩溃回调、系统版本判断和账号登录相关修补点，并检查补丁前的指令与字符串。修复压缩游戏资源中的偶然字节被错误识别为 ZIP64 标记、导致重打包失败的问题。转换后的 4.0.1 已获用户真机验证，可正常运行。
 
 4.0.0 已接近完整可用状态。根据用户实际设备测试，云功能正常，账号可以登录，歌曲可以正常解锁，触摸操作和音频播放均正常。v20 的完整设备日志曾显示 UnityFramework 因 `segment index 4 too large` 被 dyld 拒绝；v21 已针对该错误调整段顺序并重映射实际 fixup 操作码。后续版本仍可能需要针对特定设备或系统版本进行维护。
+
+## 低内存设备
+
+Jetsam 是系统在内存压力下终止进程的机制，修改 IPA 的最低系统版本或签名无法取消系统内存限制。Apple 的 `com.apple.developer.kernel.increased-memory-limit` 权限从 iOS/iPadOS 15 才提供，且仅适用于部分设备，不能用于 iOS 12 的默认转换。工具不会加入声称能“解除 Jetsam”的无效补丁。画面撕裂本身也不能单凭现象归因为 Jetsam；若出现退出，请记录对应时间的 JetsamEvent 报告中的进程名与 `reason`，并另行记录画面异常。后续可根据实际内存和图形证据评估资源或渲染优化。参见 [Apple 的 Jetsam 诊断说明](https://developer.apple.com/documentation/xcode/identifying-high-memory-use-with-jetsam-event-reports) 与 [内存权限说明](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.kernel.increased-memory-limit)。
 
 ## 许可与使用范围
 
