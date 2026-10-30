@@ -18,6 +18,22 @@ from pathlib import Path
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 
+SUPPORTED_VERSIONS = {
+    "4.0.0": "已真机验证",
+    "4.0.1": "已真机验证",
+    "4.0.3": "离线验证通过，待真机验证",
+}
+
+
+def input_version(source: Path) -> str:
+    """Read only the small plist; the worker verifies the actual framework build."""
+    with zipfile.ZipFile(source) as archive:
+        info = plistlib.loads(archive.read("Payload/Phigros.app/Info.plist"))
+    version = info.get("CFBundleShortVersionString")
+    if not isinstance(version, str) or not version:
+        raise ValueError("IPA 缺少游戏版本号")
+    return version
+
 
 def bundle_root() -> Path:
     return Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parents[1]))
@@ -66,6 +82,9 @@ def validate_output(output: Path):
                        "Payload/Phigros.app/Frameworks/UnityFramework.framework/UnityFramework"):
             if member not in members or not archive.getinfo(member).file_size:
                 raise ValueError("输出 IPA 不完整：" + member)
+        info = plistlib.loads(archive.read("Payload/Phigros.app/Info.plist"))
+        if info.get("CFBundleShortVersionString") not in SUPPORTED_VERSIONS or info.get("MinimumOSVersion") != "12.0":
+            raise ValueError("输出 IPA 的版本或最低系统版本不正确")
 
 
 class ConverterApp:
@@ -77,6 +96,7 @@ class ConverterApp:
         self.root.configure(bg="#0f141b")
         self.events: queue.Queue[tuple[str, str]] = queue.Queue()
         self.running = False
+        self.auto_output: Path | None = None
 
         self.colors = {
             "bg": "#0f141b", "panel": "#171e27", "panel2": "#1c2530",
@@ -101,7 +121,7 @@ class ConverterApp:
                  font=("Segoe UI", 10, "bold"), anchor="w").grid(row=0, column=0, sticky="w")
         tk.Label(header, text="iOS 12+ compatibility converter", bg=self.colors["bg"], fg=self.colors["text"],
                  font=("Segoe UI", 21, "bold"), anchor="w").grid(row=1, column=0, sticky="w", pady=(4, 0))
-        tk.Label(header, text="4.0.0 / 4.0.1 已真机验证 · 4.0.3 破壳 IPA 待真机测试", bg=self.colors["bg"],
+        tk.Label(header, text="支持 4.0.0 / 4.0.1 / 4.0.3 · 4.0.3 待真机验证", bg=self.colors["bg"],
                  fg=self.colors["muted"], font=("Segoe UI", 10), anchor="w").grid(row=2, column=0, sticky="w", pady=(6, 0))
         self.status_var = tk.StringVar(value="等待选择 IPA")
         tk.Label(header, textvariable=self.status_var, bg=self.colors["bg"], fg=self.colors["blue"],
@@ -119,15 +139,21 @@ class ConverterApp:
         self.input_entry = tk.Entry(panel, textvariable=self.input_var, bg=self.colors["panel2"], fg=self.colors["text"],
                                     insertbackground=self.colors["accent"], relief="flat", font=("Segoe UI", 10))
         self.input_entry.grid(row=1, column=1, sticky="ew", padx=12, ipady=7)
+        self.input_entry.bind("<FocusOut>", lambda _event: self.refresh_input())
+        self.input_entry.bind("<Return>", lambda _event: self.refresh_input())
         self.make_button(panel, "浏览", self.choose_input).grid(row=1, column=2, padx=(4, 0))
 
+        self.input_info_var = tk.StringVar(value="选择已解密的 Phigros 破壳 IPA；转换前会核对二进制版本")
+        tk.Label(panel, textvariable=self.input_info_var, bg=self.colors["panel"], fg=self.colors["muted"],
+                 font=("Segoe UI", 9), anchor="w").grid(row=2, column=1, columnspan=2, sticky="w", padx=12)
+
         tk.Label(panel, text="输出 IPA", bg=self.colors["panel"], fg=self.colors["text"],
-                 font=("Segoe UI", 10)).grid(row=2, column=0, sticky="w", pady=6)
+                 font=("Segoe UI", 10)).grid(row=3, column=0, sticky="w", pady=6)
         self.output_var = tk.StringVar()
         self.output_entry = tk.Entry(panel, textvariable=self.output_var, bg=self.colors["panel2"], fg=self.colors["text"],
                                      insertbackground=self.colors["accent"], relief="flat", font=("Segoe UI", 10))
-        self.output_entry.grid(row=2, column=1, sticky="ew", padx=12, ipady=7)
-        self.make_button(panel, "浏览", self.choose_output).grid(row=2, column=2, padx=(4, 0))
+        self.output_entry.grid(row=3, column=1, sticky="ew", padx=12, ipady=7)
+        self.make_button(panel, "浏览", self.choose_output).grid(row=3, column=2, padx=(4, 0))
 
         log_header = tk.Frame(frame, bg=self.colors["bg"])
         log_header.grid(row=2, column=0, sticky="ew", pady=(20, 8))
@@ -179,9 +205,21 @@ class ConverterApp:
         path = filedialog.askopenfilename(title="选择 Phigros 破壳 IPA", filetypes=[("IPA 文件", "*.ipa"), ("所有文件", "*.*")])
         if path:
             self.input_var.set(path)
-            self.status_var.set("已选择输入文件")
-            if not self.output_var.get():
-                self.output_var.set(str(self.default_output(Path(path))))
+            self.refresh_input()
+
+    def refresh_input(self):
+        source = Path(self.input_var.get()).expanduser()
+        if not source.is_file() or source.suffix.lower() != ".ipa":
+            return
+        try:
+            version = input_version(source)
+            self.input_info_var.set("包内版本 " + version + " · " + SUPPORTED_VERSIONS.get(version, "未支持，转换会拒绝"))
+        except (OSError, KeyError, ValueError, zipfile.BadZipFile, plistlib.InvalidFileException) as error:
+            self.input_info_var.set("无法读取 IPA 信息：" + str(error))
+        if not self.output_var.get().strip() or (self.auto_output and self.output_var.get() == str(self.auto_output)):
+            self.auto_output = self.default_output(source)
+            self.output_var.set(str(self.auto_output))
+        self.status_var.set("已选择输入文件")
 
     def choose_output(self):
         path = filedialog.asksaveasfilename(title="选择输出 IPA", defaultextension=".ipa", filetypes=[("IPA 文件", "*.ipa")])
@@ -198,17 +236,17 @@ class ConverterApp:
         stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         stem = source.stem
         try:
-            with zipfile.ZipFile(source) as archive:
-                version = plistlib.loads(archive.read("Payload/Phigros.app/Info.plist")).get("CFBundleShortVersionString")
-            if isinstance(version, str) and re.fullmatch(r"[0-9]+[.][0-9]+[.][0-9]+", version) and version not in stem:
+            version = input_version(source)
+            if re.fullmatch(r"[0-9]+[.][0-9]+[.][0-9]+", version) and version not in stem:
                 stem += "_" + version
-        except (OSError, KeyError, ValueError, zipfile.BadZipFile):
+        except (OSError, KeyError, ValueError, zipfile.BadZipFile, plistlib.InvalidFileException):
             pass  # The converter will report invalid inputs; naming remains available.
         return source.with_name(stem + "_iOS12_ported_" + stamp + ".ipa")
 
     def start(self):
         if self.running:
             return
+        self.refresh_input()
         source = Path(self.input_var.get()).expanduser()
         output = Path(self.output_var.get()).expanduser() if self.output_var.get().strip() else self.default_output(source)
         self.output_var.set(str(output))
@@ -272,18 +310,24 @@ class ConverterApp:
                 kind, value = self.events.get_nowait()
                 if kind == "log":
                     self.append(value)
+                    stages = (("chained2dyld.py", "正在转换加载信息…"),
+                              ("patch_v14.py", "正在应用运行时补丁…"),
+                              ("patch_ipa.py", "正在重新封装 IPA…"))
+                    for marker, label in stages:
+                        if marker in value and value.lstrip().startswith("+"):
+                            self.status_var.set(label)
+                            break
                 elif kind == "done":
                     self.running = False
                     self.progress.stop()
                     self.start_button.configure(state="normal")
                     if value == "0":
                         self.status_var.set("转换完成")
-                        self.append("转换完成。请使用签名工具重新签名后安装。")
+                        self.append("转换完成。输出文件已在资源管理器中定位；安装前按需签名。")
                         try:
                             self.reveal_output()
                         except OSError as error:
                             self.append("IPA 已生成，打开资源管理器失败：" + str(error))
-                        messagebox.showinfo("转换完成", "IPA 已生成，请重新签名后安装。")
                     else:
                         self.status_var.set("转换失败")
                         self.append("转换失败，退出码：" + value)

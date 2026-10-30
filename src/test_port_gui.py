@@ -11,6 +11,51 @@ import port_gui as gui
 
 
 class GuiTests(unittest.TestCase):
+    def test_input_version_and_output_validation(self):
+        with tempfile.TemporaryDirectory() as folder:
+            source = Path(folder) / "phigros.ipa"
+            with zipfile.ZipFile(source, "w") as archive:
+                archive.writestr("Payload/Phigros.app/Info.plist",
+                                 plistlib.dumps({"CFBundleShortVersionString": "4.0.3", "MinimumOSVersion": "12.0"}))
+                archive.writestr("Payload/Phigros.app/Phigros", b"main")
+                archive.writestr("Payload/Phigros.app/Frameworks/UnityFramework.framework/UnityFramework", b"framework")
+            self.assertEqual(gui.input_version(source), "4.0.3")
+            gui.validate_output(source)
+
+    def test_selecting_another_input_refreshes_only_automatic_output(self):
+        class Var:
+            def __init__(self, value=""):
+                self.value = value
+
+            def get(self):
+                return self.value
+
+            def set(self, value):
+                self.value = value
+
+        with tempfile.TemporaryDirectory() as folder:
+            sources = []
+            for version in ("4.0.1", "4.0.3"):
+                source = Path(folder) / (version + ".ipa")
+                with zipfile.ZipFile(source, "w") as archive:
+                    archive.writestr("Payload/Phigros.app/Info.plist",
+                                     plistlib.dumps({"CFBundleShortVersionString": version}))
+                sources.append(source)
+            app = object.__new__(gui.ConverterApp)
+            app.input_var, app.output_var = Var(str(sources[0])), Var()
+            app.input_info_var, app.status_var = Var(), Var()
+            app.auto_output = None
+            app.refresh_input()
+            first = app.output_var.get()
+            app.input_var.set(str(sources[1]))
+            app.refresh_input()
+            self.assertNotEqual(first, app.output_var.get())
+            self.assertIn("4.0.3", app.input_info_var.get())
+            app.output_var.set(str(Path(folder) / "custom.ipa"))
+            app.input_var.set(str(sources[0]))
+            app.refresh_input()
+            self.assertTrue(app.output_var.get().endswith("custom.ipa"))
+
     def test_generic_input_name_includes_ipa_version(self):
         with tempfile.TemporaryDirectory() as folder:
             source = Path(folder) / "phigros.ipa"

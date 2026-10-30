@@ -2,6 +2,7 @@
 import shutil
 import subprocess
 import sys
+import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -27,11 +28,21 @@ def main():
         subprocess.run([sys.executable, "-m", "PyInstaller", *options, mode, "--name", name,
                         str(staging / entry)], cwd=ROOT, check=True)
     destination = ROOT / "portable/PhigrosPortGUI"
-    shutil.copytree(ROOT / "dist/PhigrosPortGUI", destination, dirs_exist_ok=True)
+    # Never leave a stale worker or script in a newly distributed folder.
+    if destination.exists():
+        shutil.rmtree(destination)
+    shutil.copytree(ROOT / "dist/PhigrosPortGUI", destination)
     shutil.copytree(ROOT / "dist/PhigrosPortWorker/_internal", destination / "_internal", dirs_exist_ok=True)
     shutil.copyfile(ROOT / "dist/PhigrosPortWorker/PhigrosPortWorker.exe",
                     destination / "PhigrosPortWorker.exe")
+    shutil.copyfile(ROOT / "docs/GUI使用说明.txt", destination / "使用说明.txt")
+    package = ROOT / "portable/PhigrosPortGUI.zip"
+    with zipfile.ZipFile(package, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
+        for path in sorted(destination.rglob("*")):
+            if path.is_file():
+                archive.write(path, path.relative_to(destination.parent))
     print("Built:", destination)
+    print("Packaged:", package)
 
 
 if __name__ == "__main__":

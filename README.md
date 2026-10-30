@@ -1,6 +1,6 @@
 # Phigros iOS 12+ 兼容移植工具链
 
-**4.0.0、4.0.1 4.0.3 已完成
+**4.0.0、4.0.1 已获真机验证；4.0.3 转换流程已完成，等待真机验证。**
 
 本项目将原本要求 iOS 15 或更高版本的 Phigros 4.0.0 / 4.0.1 / 4.0.3，转换为使用 iOS 12 仍能识别的 Mach-O 加载信息，并处理运行时兼容问题。目标系统范围是 iOS 12 及更高版本；Swift 运行库要求 iOS 12.2 或更高版本，iOS 12.0/12.1 暂不保证。具体设备是否能完整运行，仍取决于设备架构、系统组件、签名方式和游戏运行时行为。
 
@@ -54,10 +54,10 @@ path\to\pgrupdater-\port_to_ios12.cmd path\to\decrypted-input.ipa path\to\output
 
 转换完成后，使用你自己的开发者签名或侧载工具重新签名，再安装到测试设备。签名证书、描述文件和设备标识不会被项目保存或上传。
 
-不想使用命令行时，直接打开 `portable/PhigrosPortGUI/PhigrosPortGUI.exe`，选择输入和输出文件即可。便携版已经包含 Python 运行环境和弱链接清单，不需要另外安装 Python。如果当前目录已经是 `src`，不要再次写 `src/port_to_ios12.py`。
+不想使用命令行时，可从 GitHub Releases 下载最新版 `PhigrosPortGUI.zip`，完整解压后打开 `PhigrosPortGUI.exe`。选择破壳 IPA 后界面会显示包内版本，并自动生成带版本号的输出文件名；4.0.3 仅完成离线验证。便携版已包含 Python 运行环境和弱链接清单，不需要另外安装 Python。如果当前目录已经是 `src`，不要再次写 `src/port_to_ios12.py`。
 
 请保留整个便携文件夹，包括 `PhigrosPortWorker.exe` 和 `_internal`。
-转换在隐藏的工作进程中运行，日志会实时显示；只有检查输出 IPA 完整后才提示完成。
+转换在隐藏的工作进程中运行，界面显示当前阶段和实时日志；检查输出 IPA 的关键文件、版本与最低系统版本后自动打开资源管理器并选中成品。
 App Store 原始加密 IPA（`cryptid=1`）会在开始时被明确拒绝，本工具不提供解密功能。
 
 运行测试：
